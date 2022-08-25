@@ -274,6 +274,8 @@ void AT42QT::setSlider(uint8_t lenght, uint8_t hyst, uint8_t res) {
 	setup_block.Slider_Resolution = constrain(res, 0, 6);
 }
 
+#if QT_DEVICE == QT2160
+
 void AT42QT::setKeyBL(uint8_t num, uint8_t value) {
 	if(num < 16) num += QT_KEY0_BL;
 	if(num < QT_KEY0_BL || num > QT_KEY15_BL) return;
@@ -303,6 +305,7 @@ void AT42QT::setKeyBL(uint8_t numFrom, uint8_t numTo, uint8_t value) {
 	if(numTo < numFrom) numTo = numFrom;
 	for(uint8_t i=numFrom; i<=numTo; i++) setKeyBL(i, value);
 }
+#endif
 
 void AT42QT::setKeyAKS(uint8_t numFrom, uint8_t numTo, uint8_t value) {
 	if(numTo < numFrom) numTo = numFrom;
@@ -389,12 +392,13 @@ void AT42QT::writeKeyNTHR(uint8_t numFrom, uint8_t numTo, uint8_t value) {
 // -------------------------------------------------------------------
 */
 
-
+#if QT_DEVICE == QT2160
 void AT42QT::pwm(uint8_t gpio, uint8_t pwm) {
 		 if(!pwm)     setup_block.PWM_level = 255;
 	else if(pwm==255) setup_block.PWM_level = 0;
 	else setup_block.PWM_level = map(pwm, 1, 254, 11, 249);
 }
+#endif
 
 void AT42QT::setGPIO(uint8_t state) {
 	

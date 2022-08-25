@@ -11,8 +11,8 @@
 
 #include "AT42QT_API.h"
 
-#define QT_DEBUG Serial
-#define DBG "[DBG] "
+//#define QT_DEBUG Serial
+//#define DBG "[DBG] "
 
 /*============================================================================
 Macros
